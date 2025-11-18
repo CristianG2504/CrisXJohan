@@ -3,8 +3,8 @@
 header("Content-Type: application/json");
 
 // Incluye conexión y modelo
-require_once("../config/conexion.php");
-require_once("../models/Clientes.php");
+require_once __DIR__ . "/../config/conexion.php";
+require_once __DIR__ . "/../models/Clientes.php";
 
 // Instancia del modelo
 $Clientes = new Clientes();

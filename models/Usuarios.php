@@ -1,5 +1,7 @@
 <?php
-class UsuariosAPI extends Conectar
+require_once __DIR__ . '/../config/conexion.php';
+
+class Usuarios extends Conectar
 {
     public function obtener_Usuarios_por_cedula($cedula)
     {

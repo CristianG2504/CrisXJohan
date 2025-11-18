@@ -2,7 +2,7 @@
 require_once("../config/conexion.php");
 require_once("../models/Usuarios.php");
 
-$usuarios = new UsuariosAPI();
+$usuarios = new Usuarios();
 
 header('Content-Type: application/json; charset=utf-8');
 

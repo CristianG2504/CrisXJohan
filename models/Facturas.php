@@ -1,5 +1,7 @@
 <?php
-class Facturacion extends Conectar
+require_once __DIR__ . '/../config/conexion.php';
+
+class Facturas extends Conectar
 {
     public function insertarFactura($fecha, $cedula_cliente, $total, $detalles)
     {

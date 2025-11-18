@@ -6,7 +6,7 @@ require_once("../models/Clientes.php");
 
 // Instancia del modelo
 $Clientes = new Clientes();
-$factura = new Facturacion();
+$factura = new Facturas();
 $Productos = new Productos();
 
 header("Content-Type: application/json; charset=UTF-8");
@@ -81,13 +81,6 @@ switch ($op) {
     case "buscar_cliente":
         $nombre = $_GET["nombre"] ?? "";
         $resultado = $factura->buscarFacturaPorNombreCliente($nombre);
-
-        echo json_encode($resultado);
-        break;
-
-    case "buscar_producto":
-        $producto = $_GET["producto"] ?? "";
-        $resultado = $factura->buscarFacturaPorNombreProducto($producto);
 
         echo json_encode($resultado);
         break;

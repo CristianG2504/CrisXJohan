@@ -2,41 +2,43 @@
 // Clase Conectar para manejar la conexión a la base de datos
 class Conectar
 {
-    // Variable protegida para almacenar la instancia de la conexión
     protected $conexion_bd;
 
-    // Método protegido para establecer la conexión con la base de datos
     protected function conectar_bd()
     {
         try {
-            // Establece la conexión utilizando PDO
-            // Datos de Railway
+            // Railway
             $host = "hopper.proxy.rlwy.net";
             $port = "33613";
             $dbname = "railway";
             $user = "root";
             $password = "fuBvzEdinxeGlsslAGCEXrsgMVllKgLM";
 
-            // Crear conexión con PDO
-            $conexion = $this->conexion_bd = new PDO(
-                "mysql:host=$host;port=$port;dbname=$dbname",
+            $this->conexion_bd = new PDO(
+                "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8",
                 $user,
                 $password,
-                array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8")
+                [
+                    PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
+                    PDO::MYSQL_ATTR_SSL_CA => null,
+                    PDO::MYSQL_ATTR_SSL_VERIFY_SERVER_CERT => false,
+                ]
             );
-            return $conexion;
+
+            return $this->conexion_bd;
+
         } catch (Exception $e) {
-            // Si ocurre un error, muestra el mensaje de error y detiene la ejecución
-            print "Error en la base de datos: " . $e->getMessage() . "<br/>";
-            die();  // Detiene la ejecución
+            error_log("ERROR DB: " . $e->getMessage());
+            echo json_encode([
+                "status" => "error",
+                "message" => "Error de conexión: " . $e->getMessage()
+            ]);
+            exit;
         }
     }
 
-    // Método público para establecer la codificación de caracteres a UTF-8
     public function establecer_codificacion()
     {
-        // Ejecuta la sentencia SQL para configurar la codificación de caracteres a UTF-8
         return $this->conexion_bd->query("SET NAMES 'utf8'");
     }
 }
-?>

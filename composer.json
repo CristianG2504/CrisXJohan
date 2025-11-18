@@ -1,11 +1,8 @@
 {
-    "name": "miapi/proyecto",
-    "description": "API PHP para clientes, productos y facturas",
-    "type": "project",
-    "require": {
-        "ext-pdo": "*"
-    },
+    "name": "crisxjohan/api",
+    "description": "API en PHP para clientes, productos y facturas",
+    "require": {},
     "scripts": {
-        "start": "php -S 0.0.0.0:$PORT -t ."
+        "start": "php -S 0.0.0.0:$PORT index.php"
     }
 }

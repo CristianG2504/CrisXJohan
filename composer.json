@@ -1,0 +1,11 @@
+{
+    "name": "miapi/proyecto",
+    "description": "API PHP para clientes, productos y facturas",
+    "type": "project",
+    "require": {
+        "ext-pdo": "*"
+    },
+    "scripts": {
+        "start": "php -S 0.0.0.0:$PORT -t ."
+    }
+}

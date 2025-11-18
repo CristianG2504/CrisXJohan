@@ -3,8 +3,8 @@ header("Content-Type: application/json; charset=utf-8");
 
 $path = parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH);
 
-$base = "/CrisXJohan/index.php";
-$path = str_replace($base, "", $path);
+// Eliminar cualquier barra extra al final
+$path = rtrim($path, "/");
 
 switch ($path) {
 
@@ -32,4 +32,3 @@ switch ($path) {
         ]);
         break;
 }
-

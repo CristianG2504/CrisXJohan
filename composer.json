@@ -1,8 +1,20 @@
 {
-    "name": "crisxjohan/api",
-    "description": "API en PHP para clientes, productos y facturas",
-    "require": {},
+    "name": "crisxjohan/api-php",
+    "description": "API PHP para gestión de clientes, productos y facturas",
+    "type": "project",
+    "require": {
+        "php": "^8.3.23",
+        "ext-pdo": "*"
+    },
+    "autoload": {
+        "psr-4": {
+            "": "models/"
+        }
+    },
     "scripts": {
-        "start": "php -S 0.0.0.0:$PORT index.php"
+        "post-autoload-dump": [
+            "mkdir -p public",
+            "cp index.php public/ || true"
+        ]
     }
 }

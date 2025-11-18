@@ -13,11 +13,16 @@ class Conectar
             $dbname = "railway";
             $user = "root";
             $password = "fuBvzEdinxeGlsslAGCEXrsgMVllKgLM";
+            $DB_HOST = $_ENV['DB_HOST'] ?? 'hopper.proxy.rlwy.net';
+            $DB_PORT = $_ENV['DB_PORT'] ?? '33613';
+            $DB_NAME = $_ENV['DB_NAME'] ?? 'railway';
+            $DB_USER = $_ENV['DB_USER'] ?? 'root';
+            $DB_PASSWORD = $_ENV['DB_PASSWORD'] ?? 'fuBvzEdinxeGlsslAGCEXrsgMVllKgLM';
 
             $this->conexion_bd = new PDO(
-                "mysql:host=$host;port=$port;dbname=$dbname;charset=utf8",
-                $user,
-                $password,
+                "mysql:host=$DB_HOST;port=$DB_PORT;dbname=$DB_NAME;charset=utf8",
+                $DB_USER,
+                $DB_PASSWORD,
                 [
                     PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8",
                     PDO::MYSQL_ATTR_SSL_CA => null,

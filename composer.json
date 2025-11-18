@@ -3,7 +3,7 @@
     "description": "API PHP para gestión de clientes, productos y facturas",
     "type": "project",
     "require": {
-        "php": "^8.3.23",
+        "php": "^8.0",
         "ext-pdo": "*"
     },
     "autoload": {

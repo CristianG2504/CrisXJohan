@@ -10,11 +10,5 @@
         "psr-4": {
             "": "models/"
         }
-    },
-    "scripts": {
-        "post-autoload-dump": [
-            "mkdir -p public",
-            "cp index.php public/ || true"
-        ]
     }
 }

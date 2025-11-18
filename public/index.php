@@ -29,29 +29,29 @@ switch ($path) {
         break;
 
     case '/clientes':
-        require_once __DIR__ . '/controllers/clientes.php';
+        require_once __DIR__ . '/../controllers/clientes.php';
         break;
 
     case '/productos':
-        require_once __DIR__ . '/controllers/productos.php';
+        require_once __DIR__ . '/../controllers/productos.php';
         break;
 
     case '/facturas':
-        require_once __DIR__ . '/controllers/facturas.php';
+        require_once __DIR__ . '/../controllers/facturas.php';
         break;
 
     case '/usuarios':
-        require_once __DIR__ . '/controllers/usuarios.php';
+        require_once __DIR__ . '/../controllers/usuarios.php';
         break;
-        
+
     case '/health':
-    echo json_encode([
-        "status" => "success",
-        "message" => "API funcionando",
-        "timestamp" => date('Y-m-d H:i:s'),
-        "php_version" => PHP_VERSION
-    ]);
-    break;
+        echo json_encode([
+            "status" => "success",
+            "message" => "API funcionando",
+            "timestamp" => date('Y-m-d H:i:s'),
+            "php_version" => PHP_VERSION
+        ]);
+        break;
 
     default:
         http_response_code(404);

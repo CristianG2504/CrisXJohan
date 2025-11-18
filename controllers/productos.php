@@ -7,7 +7,7 @@ require_once("../models/Productos.php");
 require_once("../models/Usuarios.php");
 
 $Productos = new Productos();
-$UsuariosAPI = new UsuariosAPI();
+$UsuariosAPI = new Usuarios();
 
 $encabezados = getallheaders();
 

@@ -11,11 +11,11 @@ class Conectar
         try {
             // Establece la conexión utilizando PDO
             // Datos de Railway
-            $host = "mainline.proxy.rlwy.net";
-            $port = "13398";
+            $host = "hopper.proxy.rlwy.net";
+            $port = "33613";
             $dbname = "railway";
             $user = "root";
-            $password = "SWvtJVcJddGiqwSLJAjruCqqrCnSLkai";
+            $password = "fuBvzEdinxeGlsslAGCEXrsgMVllKgLM";
 
             // Crear conexión con PDO
             $conexion = $this->conexion_bd = new PDO(

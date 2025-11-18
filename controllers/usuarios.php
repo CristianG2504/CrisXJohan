@@ -1,61 +1,61 @@
 <?php
-require_once("../config/conexion.php");
-require_once("../models/Usuarios.php");
+header("Content-Type: application/json; charset=utf-8");
 
-$usuarios = new Usuarios();
+try {
+    require_once("../config/conexion.php");
+    require_once("../models/Usuarios.php");
 
-header('Content-Type: application/json; charset=utf-8');
+    $usuarios = new Usuarios();
 
-switch ($_GET["op"]) {
-    case "login":
-        $data = json_decode(file_get_contents("php://input"), true);
-
-        if (!isset($data["cedula"]) || !isset($data["password"])) {
-            echo json_encode(["error" => "Debe enviar cedula y password"]);
+    switch ($_GET["op"]) {
+        case "login":
+            $data = json_decode(file_get_contents("php://input"), true);
+            if (!isset($data["cedula"]) || !isset($data["password"])) {
+                echo json_encode(["error" => "Debe enviar cedula y password"]);
+                break;
+            }
+            $resultado = $usuarios->login_usuario($data["cedula"], $data["password"]);
+            echo json_encode($resultado);
             break;
-        }
 
-        $resultado = $usuarios->login_usuario($data["cedula"], $data["password"]);
-        echo json_encode($resultado);
-        break;
-
-    case "insert":
-        $data = json_decode(file_get_contents("php://input"), true);
-
-        if (!isset($data["cedula"]) || !isset($data["nombre"]) || !isset($data["password"])) {
-            echo json_encode(["error" => "Faltan datos para insertar"]);
+        case "insert":
+            $data = json_decode(file_get_contents("php://input"), true);
+            if (!isset($data["cedula"]) || !isset($data["nombre"]) || !isset($data["password"])) {
+                echo json_encode(["error" => "Faltan datos para insertar"]);
+                break;
+            }
+            $clave = $usuarios->insertar_Usuarios(
+                $data["cedula"],
+                $data["nombre"],
+                $data["password"]
+            );
+            echo json_encode([
+                "mensaje" => "Usuario registrado correctamente",
+                "clave_generada" => $clave
+            ]);
             break;
-        }
 
-        $clave = $usuarios->insertar_Usuarios(
-            $data["cedula"],
-            $data["nombre"],
-            $data["password"]
-        );
-
-        echo json_encode([
-            "mensaje" => "Usuario registrado correctamente",
-            "clave_generada" => $clave
-        ]);
-        break;
-
-    case "delete":
-        if (!isset($_GET["cedula"])) {
-            echo json_encode(["error" => "Debe enviar la cedula"]);
+        case "delete":
+            if (!isset($_GET["cedula"])) {
+                echo json_encode(["error" => "Debe enviar la cedula"]);
+                break;
+            }
+            $usuarios->eliminar_Usuarios($_GET["cedula"]);
+            echo json_encode([
+                "mensaje" => "Usuario eliminado correctamente"
+            ]);
             break;
-        }
 
-        $usuarios->eliminar_Usuarios($_GET["cedula"]);
-
-        echo json_encode([
-            "mensaje" => "Usuario eliminado correctamente"
-        ]);
-        break;
-
-    default:
-        echo json_encode([
-            "error" => "Operación no válida"
-        ]);
-        break;
+        default:
+            echo json_encode(["error" => "Operación no válida"]);
+            break;
+    }
+} catch (Exception $e) {
+    error_log("Error en usuarios.php: " . $e->getMessage());
+    http_response_code(500);
+    echo json_encode([
+        "status" => "error",
+        "message" => "Error interno del servidor",
+        "error" => $e->getMessage()
+    ]);
 }
-?>

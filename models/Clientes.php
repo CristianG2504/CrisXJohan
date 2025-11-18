@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../config/conexion.php';
 class Clientes extends Conectar
 {
     public function obtener_cliente_por_cedula($cedula)

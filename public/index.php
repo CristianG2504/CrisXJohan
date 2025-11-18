@@ -43,6 +43,15 @@ switch ($path) {
     case '/usuarios':
         require_once __DIR__ . '/controllers/usuarios.php';
         break;
+        
+    case '/health':
+    echo json_encode([
+        "status" => "success",
+        "message" => "API funcionando",
+        "timestamp" => date('Y-m-d H:i:s'),
+        "php_version" => PHP_VERSION
+    ]);
+    break;
 
     default:
         http_response_code(404);
